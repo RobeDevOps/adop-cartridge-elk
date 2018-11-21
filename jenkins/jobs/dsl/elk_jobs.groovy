@@ -3,6 +3,7 @@ import pluggable.scm.*;
 import adop.cartridge.properties.*;
 
 SCMProvider scmProvider = SCMProviderHandler.getScmProvider("${SCM_PROVIDER_ID}", binding.variables)
+CartridgeProperties cartridgeProperties = new CartridgeProperties("${CARTRIDGE_CUSTOM_PROPERTIES}");
 
 // Folders
 def workspaceFolderName = "${WORKSPACE_NAME}"
@@ -29,12 +30,14 @@ createIndexPattern.with{
     parameters{
         stringParam("KIBANA_HOST", 'kibana:5601', "Kibana Server")
         stringParam("KIBANA_USR", "roberto", "Kibana username")
-        usernamePassword("KIBANA_CREDS", "kibana_creds")
+        // Change this to credentials
+        password("KIBANA_PSW", "c18c2602bc8b1391", "Kibana password")
+        
     }
     steps {
         shell('''set +x
             |
-            | echo ${KIBANA_CREDS} 
+            | echo ${KIBANA_HOST} 
             |set -x '''.stripMargin()
         )
     }
