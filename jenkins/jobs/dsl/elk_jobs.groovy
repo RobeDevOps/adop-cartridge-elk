@@ -30,13 +30,15 @@ createIndexPattern.with{
         stringParam("KIBANA_HOST", 'kibana:5601', "Kibana Server")
         stringParam("KIBANA_USR", "roberto", "Kibana username")
         // Change this to credentials
-        password("KIBANA_PSW", "c18c2602bc8b1391", "Kibana password")
+        stringParam("KIBANA_PSW", "c18c2602bc8b1391", "Kibana password")
         
     }
     steps {
         shell('''set +x
             |
-            | echo ${KIBANA_HOST} 
+            | echo ${KIBANA_HOST}
+            | echo ${KIBANA_USR}
+            | echo ${KIBANA_PSW}
             |set -x '''.stripMargin()
         )
     }
