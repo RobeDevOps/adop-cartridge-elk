@@ -42,5 +42,6 @@ createIndexPattern.with{
             |
             | echo ${KIBANA_CREDS} 
             |set -x '''.stripMargin()
+        )
     }
 }
