@@ -1,3 +1,4 @@
+
 import pluggable.scm.*;
 import adop.cartridge.properties.*;
 
@@ -37,9 +38,9 @@ createIndexPattern.with{
         usernamePassword("KIBANA_CREDS", "kibana_creds")
     }
     steps {
-        shell('''
+        shell('''set +x
             |
             | echo ${KIBANA_CREDS} 
-            |'''.stripMargin()
+            |set -x '''.stripMargin()
     }
 }
