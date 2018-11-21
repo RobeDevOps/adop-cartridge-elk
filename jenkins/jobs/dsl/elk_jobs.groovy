@@ -35,10 +35,7 @@ createIndexPattern.with{
     }
     steps {
         shell('''set +x
-            |
-            | echo ${KIBANA_HOST}
-            | echo ${KIBANA_USR}
-            | echo ${KIBANA_PSW}
+            | curl -u ${KIBANA_USR}:${KIBANA_PSW} -XGET "http://${KIBANA_HOST}/api/saved_objects/index-pattern/adop_container_* -H "Content-Type: application/json" -H "kbn-xsrf: true"
             |set -x '''.stripMargin()
         )
     }
