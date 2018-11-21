@@ -3,7 +3,6 @@ import pluggable.scm.*;
 import adop.cartridge.properties.*;
 
 SCMProvider scmProvider = SCMProviderHandler.getScmProvider("${SCM_PROVIDER_ID}", binding.variables)
-CartridgeProperties cartridgeProperties = new CartridgeProperties("${CARTRIDGE_CUSTOM_PROPERTIES}");
 
 // Folders
 def workspaceFolderName = "${WORKSPACE_NAME}"
