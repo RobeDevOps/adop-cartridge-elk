@@ -38,9 +38,9 @@ createIndexPattern.with{
         |do
         |  id=$index_pattern
         |  time_field="@timestamp"
-        |  curl -f -XPOST -H "Content-Type: application/json" -H "kbn-xsrf: pattern" "${KIBANA_HOST}/api/saved_objects/index-pattern/$id" -d"{\"attributes\":{\"title\":\"$index_pattern\",\"timeFieldName\":\"$time_field\"}}"
+        |  curl -f -XPOST -H "Content-Type: application/json" -H "kbn-xsrf: pattern" "${KIBANA_HOST}/api/saved_objects/index-pattern/$id" -d"{\\"attributes\\":{\\"title\":\\"$index_pattern\\",\\"timeFieldName\\":\\"$time_field\\"}}"
         |  if [ $? -eq 0 ]; then
-        |    curl -XPOST -H "Content-Type: application/json" -H "kbn-xsrf: pattern" "${KIBANA_HOST}/api/kibana/settings/defaultIndex" -d"{\"value\":\"$id\"}"
+        |    curl -XPOST -H "Content-Type: application/json" -H "kbn-xsrf: pattern" "${KIBANA_HOST}/api/kibana/settings/defaultIndex" -d"{\\"value\\":\\"$id\\"}"
         |    if [ $? -eq 0 ]; then
         |       printf "\\n$index_pattern created successfully"
         |    fi
