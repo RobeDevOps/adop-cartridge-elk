@@ -50,3 +50,26 @@ createIndexPattern.with{
         )
     }
 }
+
+importDashboard.with{
+    description("Import Dashboard.")
+    logRotator {
+        daysToKeep(logRotatorDaysToKeep)
+        numToKeep(logRotatorBuildNumToKeep)
+        artifactDaysToKeep(logRotatorArtifactsNumDaysToKeep)
+        artifactNumToKeep(logRotatorArtifactsNumToKeep)
+    }
+    parameters{
+        stringParam("KIBANA_HOST", 'http://kibana:5601', "Kibana Server")
+        stringParam("DASHBOARD_GIT_REPO", "git@github.com:RobeDevOps/adop-dashboards.git", "Git repository to pull dashboards json files")
+    }
+    steps {
+        shell('''#!/bin/bash
+        |set +x
+        |git clone ${DASHBOARD_GIT_REPO} adop-dashboards
+        |cd adop-dashboards
+        |curl -X POST -H "Content-Type: application/json" -H "kbn-xsrf: true" http://kibana:5601/api/kibana/dashboards/import -d @network.json
+        |set -x'''.stripMargin()
+        )
+    }
+}
