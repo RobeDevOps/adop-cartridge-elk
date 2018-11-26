@@ -62,7 +62,7 @@ importDashboard.with{
     }
     parameters{
         stringParam("KIBANA_HOST", 'http://kibana:5601', "Kibana Server")
-        stringParam("DASHBOARD_GIT_REPO", "git@github.com:RobeDevOps/adop-dashboards.git", "Git repository to pull dashboards json files")
+        stringParam("DASHBOARD_GIT_REPO", "https://github.com/RobeDevOps/adop-dashboards.git", "Git repository to pull dashboards json files")
     }
     steps {
         shell('''#!/bin/bash
