@@ -19,7 +19,7 @@ def logRotatorArtifactsNumToKeep = 7
 def createIndexPattern = freeStyleJob(projectFolderName + "/Create_Index_Pattern")
 
 createIndexPattern.with{
-    description("Create Index Pattern.")
+    description("Create Index Patterns.")
     logRotator {
         daysToKeep(logRotatorDaysToKeep)
         numToKeep(logRotatorBuildNumToKeep)
@@ -27,16 +27,28 @@ createIndexPattern.with{
         artifactNumToKeep(logRotatorArtifactsNumToKeep)
     }
     parameters{
-        stringParam("KIBANA_HOST", 'kibana:5601', "Kibana Server")
-        stringParam("KIBANA_USR", "roberto", "Kibana username")
-        // Change this to credentials
-        stringParam("KIBANA_PSW", "c18c2602bc8b1391", "Kibana password")
+        stringParam("KIBANA_HOST", 'http://kibana:5601', "Kibana Server")
         
     }
     steps {
-        shell('''set +x
-            | curl -u ${KIBANA_USR}:${KIBANA_PSW} -XGET "http://${KIBANA_HOST}/api/saved_objects/index-pattern/adop_container_* -H "Content-Type: application/json" -H "kbn-xsrf: true"
-            |set -x '''.stripMargin()
+        shell('''#!/bin/bash
+        |set +x
+        |index_patterns=(adop_nginx_* adop_container_* adop_cpu_* adop_info_* adop_network_*)
+        |for index_pattern in "${index_patterns[@]}"
+        |do
+        |  id=$index_pattern
+        |  time_field="@timestamp"
+        |  printf "Creating $index_pattern"
+        |  curl -f -XPOST -H "Content-Type: application/json" -H "kbn-xsrf: pattern" "${KIBANA_HOST}/api/saved_objects/index-pattern/$id" -d"{\"attributes\":{\"title\":\"$index_pattern\",\"timeFieldName\":\"$time_field\"}}"
+        |  if [ $? -eq 0 ]; then
+        |    printf "\n"
+        |    curl -XPOST -H "Content-Type: application/json" -H "kbn-xsrf: pattern" "${KIBANA_HOST}/api/kibana/settings/defaultIndex" -d"{\"value\":\"$id\"}"
+        |    if [ $? -eq 0 ]; then
+        |       printf "\n$index_pattern created successfully"
+        |    fi
+        |  fi
+        |done  
+        |set -x'''.stripMargin()
         )
     }
 }
