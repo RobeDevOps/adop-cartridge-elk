@@ -17,6 +17,7 @@ def logRotatorArtifactsNumToKeep = 7
 
 // Jobs
 def createIndexPattern = freeStyleJob(projectFolderName + "/Create_Index_Pattern")
+def importDashboard = freeStyleJob(projectFolderName + "/Import_Dashboards")
 
 createIndexPattern.with{
     description("Create Index Patterns.")
