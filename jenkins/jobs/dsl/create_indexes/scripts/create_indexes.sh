@@ -1,4 +1,3 @@
-
 #!/bin/bash
 set +x
 index_patterns=(adop_nginx_* adop_container_* adop_cpu_* adop_info_* adop_network_*)
