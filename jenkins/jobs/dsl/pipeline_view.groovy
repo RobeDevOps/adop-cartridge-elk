@@ -9,7 +9,7 @@ def pipelineView = buildPipelineView(projectFolderName + "/Dashboard Pipeline Vi
 pipelineView.with{
     title( "Dashboard Pipeline View" )
     displayedBuilds( displayedBuildsValue )
-    selectedJob( projectFolderName + "/Create_Indexes_Pattern" )
+    selectedJob( "Create_Indexes_Pattern" )
     showPipelineParameters()
     showPipelineDefinitionHeader()
     refreshFrequency( refreshFrequencyValue )
