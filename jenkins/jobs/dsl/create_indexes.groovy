@@ -23,7 +23,7 @@ def createIndexPatternJob = freeStyleJob(projectFolderName + "/Create_Indexes_Pa
 def importDashboard = freeStyleJob(projectFolderName + "/Import_Dashboards")
 
 createIndexPatternJob.with{
-    description("Create Indexes Patterns.")
+    description("Create Indexes Pattern.")
     logRotator {
         daysToKeep(logRotatorDaysToKeep)
         numToKeep(logRotatorBuildNumToKeep)
@@ -35,6 +35,7 @@ createIndexPatternJob.with{
         
     }
     steps {
+        shell(readFileFromWorkspace(scriptFullPathPath + "/create_indexes.sh" ))
         shell('''#!/bin/bash
         |set +x
         |index_patterns=(adop_nginx_* adop_container_* adop_cpu_* adop_info_* adop_network_*)

@@ -3,7 +3,7 @@
   */
 String projectFolderName = "${PROJECT_NAME}"
 String pipelineName = "Dashboard Pipeline View"
-String startJob = "Create_Index_Pattern"
+String startJob = "Create_Indexes_Pattern"
 short displayedBuildsValue = 5
 short refreshFrequencyValue = 5
 def pipelineView = buildPipelineView(projectFolderName  + "/" + pipelineName)
