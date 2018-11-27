@@ -2,16 +2,14 @@
   * This jobs create the whole pipeline view 
   */
 String projectFolderName = "${PROJECT_NAME}"
-String pipelineName = "Dashboard Pipeline View"
-String startJob = "Create_Indexes_Pattern"
 short displayedBuildsValue = 5
 short refreshFrequencyValue = 5
-def pipelineView = buildPipelineView(projectFolderName  + "/" + pipelineName)
+def pipelineView = buildPipelineView(projectFolderName + "/Dashboard Pipeline View")
 
 pipelineView.with{
     title( pipelineName )
     displayedBuilds( displayedBuildsValue )
-    selectedJob( startJob )
+    selectedJob( projectFolderName + "/Create_Indexes_Pattern" )
     showPipelineParameters()
     showPipelineDefinitionHeader()
     refreshFrequency( refreshFrequencyValue )

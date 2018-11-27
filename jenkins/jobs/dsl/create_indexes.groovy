@@ -20,7 +20,6 @@ def scriptFullPathPath = "/workspace/" + projectWorkspace + "/" + projectName + 
 
 // Jobs
 def createIndexPatternJob = freeStyleJob(projectFolderName + "/Create_Indexes_Pattern")
-def importDashboard = freeStyleJob(projectFolderName + "/Import_Dashboards")
 
 createIndexPatternJob.with{
     description("Create Indexes Pattern.")
