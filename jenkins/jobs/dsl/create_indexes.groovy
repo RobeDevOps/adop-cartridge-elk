@@ -15,7 +15,7 @@ def logRotatorArtifactsNumToKeep = 7
 
 def (projectWorkspace, projectName) = projectFolderName.tokenize( '/' )
 
-def scriptsPath = '/Cartridge_Management/Load_Cartridge/cartridge/jenkins/jobs/dsl/create_index/scripts'
+def scriptsPath = '/Cartridge_Management/Load_Cartridge/cartridge/jenkins/jobs/dsl/create_indexes/scripts'
 def scriptFullPathPath = "/workspace/" + projectWorkspace + "/" + projectName + scriptsPath
 
 // Jobs
