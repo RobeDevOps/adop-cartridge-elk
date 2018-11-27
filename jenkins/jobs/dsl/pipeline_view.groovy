@@ -4,10 +4,10 @@
 String projectFolderName = "${PROJECT_NAME}"
 short displayedBuildsValue = 5
 short refreshFrequencyValue = 5
-def pipelineView = buildPipelineView(projectFolderName + "/" + "Dashboard Pipeline View")
+def pipelineView = buildPipelineView(projectFolderName + "/" + "Pipeline View")
 
 pipelineView.with{
-    title( "Dashboard Pipeline View" )
+    title( "Pipeline View" )
     displayedBuilds( displayedBuildsValue )
     selectedJob( "Create_Indexes_Pattern" )
     showPipelineParameters()
