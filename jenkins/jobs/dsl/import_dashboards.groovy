@@ -6,6 +6,11 @@ def logRotatorBuildNumToKeep = 7
 def logRotatorArtifactsNumDaysToKeep = 7
 def logRotatorArtifactsNumToKeep = 7
 
+def (projectWorkspace, projectName) = projectFolderName.tokenize( '/' )
+
+def scriptsPath = '/Cartridge_Management/Load_Cartridge/cartridge/jenkins/jobs/dsl/import_dashboards/scripts'
+def scriptFullPathPath = "/workspace/" + projectWorkspace + "/" + projectName + scriptsPath
+
 // Jobs
 def importDashboardsJob = freeStyleJob(projectFolderName + "/Import_Dashboards")
 
@@ -23,13 +28,7 @@ importDashboardsJob.with{
         booleanParam('OVERWRITE', true, 'This flag overwrites any existing configuration. Uncheck the FLAG if this is the first time running the import.')
     }
     steps {
-        shell('''#!/bin/bash
-        |set +x
-        |git clone ${DASHBOARD_GIT_REPO} adop-dashboards
-        |cd adop-dashboards
-        |curl -X POST -H "Content-Type: application/json" -H "kbn-xsrf: true" "${KIBANA_HOST}/api/kibana/dashboards/import?force=${OVERWRITE}" -d @network.json
-        |set -x'''.stripMargin()
-        )
+        shell(readFileFromWorkspace(scriptFullPathPath + "/import_dashboards.sh"))
     }
 }
 

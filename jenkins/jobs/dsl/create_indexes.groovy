@@ -13,12 +13,17 @@ def logRotatorBuildNumToKeep = 7
 def logRotatorArtifactsNumDaysToKeep = 7
 def logRotatorArtifactsNumToKeep = 7
 
+def (projectWorkspace, projectName) = projectFolderName.tokenize( '/' )
+
+def scriptsPath = '/Cartridge_Management/Load_Cartridge/cartridge/jenkins/jobs/dsl/create_index/scripts'
+def scriptFullPathPath = "/workspace/" + projectWorkspace + "/" + projectName + scriptsPath
+
 // Jobs
-def createIndexPatternJob = freeStyleJob(projectFolderName + "/Create_Index_Pattern")
+def createIndexPatternJob = freeStyleJob(projectFolderName + "/Create_Indexes_Pattern")
 def importDashboard = freeStyleJob(projectFolderName + "/Import_Dashboards")
 
 createIndexPatternJob.with{
-    description("Create Index Patterns.")
+    description("Create Indexes Patterns.")
     logRotator {
         daysToKeep(logRotatorDaysToKeep)
         numToKeep(logRotatorBuildNumToKeep)
