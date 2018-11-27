@@ -7,7 +7,7 @@ short refreshFrequencyValue = 5
 def pipelineView = buildPipelineView(projectFolderName + "/Dashboard Pipeline View")
 
 pipelineView.with{
-    title( pipelineName )
+    title( "Dashboard Pipeline View" )
     displayedBuilds( displayedBuildsValue )
     selectedJob( projectFolderName + "/Create_Indexes_Pattern" )
     showPipelineParameters()
