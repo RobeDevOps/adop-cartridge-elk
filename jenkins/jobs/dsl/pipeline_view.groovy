@@ -4,7 +4,7 @@
 String projectFolderName = "${PROJECT_NAME}"
 short displayedBuildsValue = 5
 short refreshFrequencyValue = 5
-def pipelineView = buildPipelineView(projectFolderName + "/Dashboard Pipeline View")
+def pipelineView = buildPipelineView(projectFolderName + "/" + "Dashboard Pipeline View")
 
 pipelineView.with{
     title( "Dashboard Pipeline View" )
