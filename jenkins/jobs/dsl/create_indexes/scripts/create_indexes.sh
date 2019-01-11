@@ -1,6 +1,6 @@
 #!/bin/bash
 set +x
-index_patterns=(adop_nginx_* adop_container_* adop_cpu_* adop_info_* adop_network_*)
+index_patterns=(adop_nginx_* adop_container_* adop_cpu_* adop_info_* adop_network_* adop_sonar_*)
 
 for index_pattern in "${index_patterns[@]}"
 do
@@ -13,5 +13,5 @@ do
             printf "\n$index_pattern created successfully"
         fi
     fi
-done  
+done
 set -x

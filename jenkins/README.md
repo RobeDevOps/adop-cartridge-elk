@@ -21,3 +21,5 @@ Once the indexes patterns are generated the dashboards are published using the r
 
 * Validate the index-patterns were created successfully.
 * Validate the dashboards were imported successfully.
+* Automate the CARTRIDGE_LOAD dynamically. (avoid the copy/paste process in Load_Cartridge job)
+* Export the common variables to environment variables: KIBANA_HOST, DASHBOARD_GIT_REPO
