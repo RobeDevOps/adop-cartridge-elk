@@ -1,5 +1,11 @@
 #!/bin/bash
 set +x
+
+if [ -d adop-dashboards ]
+then
+    rm -rf adop-dashboards
+fi
+
 git clone ${DASHBOARD_GIT_REPO} adop-dashboards
 cd adop-dashboards
 
