@@ -9,7 +9,7 @@ fi
 git clone ${DASHBOARD_GIT_REPO} adop-dashboards
 cd adop-dashboards
 
-dashboards=(network sonar_metrics agile_portfolio)
+dashboards=(network sonar_metrics agile_portfolio jenkins_metrics)
 
 for dashboard in "${dashboards[@]}"
 do
